@@ -1,6 +1,6 @@
 # OpenXML Document Generator
 
-Generates documents from html into openxml standard. This readme and project are under construction and are merely a placeholder.
+Generates documents from html into openxml standard.
 
 The goal of this generator is to improve efficiency in the UX process.
 
@@ -14,6 +14,36 @@ The goal of this generator is to improve efficiency in the UX process.
 
 More information on ZDS can be found at: 
 https://github.com/VNG-Realisatie/gemma-zaken
+
+## Status of this project
+
+Currently there's a "unit" test in place which generates a docx openxml document and showes that images are resolved in that document.
+
+```csharp
+
+        public void can_convert_html_to_openxml_document()
+        {
+            var doc = File.ReadAllText(@".\data\letter.html");
+            using (MemoryStream generatedDocument = new MemoryStream())
+            {
+                using (WordprocessingDocument package = WordprocessingDocument.Create(generatedDocument, WordprocessingDocumentType.Document))
+                {
+                    MainDocumentPart mainPart = package.MainDocumentPart;
+                    if (mainPart == null)
+                    {
+                            mainPart = package.AddMainDocumentPart();
+                            new Document(new Body()).Save(mainPart);
+                    }
+                    HtmlConverter converter = new HtmlConverter(mainPart);
+                    converter.ParseHtml(doc);
+                    mainPart.Document.Save();
+                }
+                // visually test this.
+                File.WriteAllBytes(@".\test.docx", generatedDocument.ToArray());
+            }
+        }    
+    }
+```
 
 More information on the camunda bpmn project (samples) can be found at:
 https://github.com/sjefvanleeuwen/camunda-process-examples
