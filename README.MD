@@ -1,4 +1,5 @@
 # OpenXML Document Generator
+![travis build](https://travis-ci.com/sjefvanleeuwen/openxml-document-generator.svg?branch=master)
 
 Generates documents from html into openxml standard.
 
