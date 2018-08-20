@@ -17,6 +17,8 @@ using NSwag;
 using NSwag.SwaggerGeneration.Processors.Security;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Net.Http.Headers;
+using Hangfire;
+using Hangfire.LiteDB;
 
 namespace oxmldocgen_api
 {
@@ -47,6 +49,7 @@ namespace oxmldocgen_api
                 options.OutputFormatters.Add(new YamlOutputFormatter());
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSwagger();
+            services.AddHangfire(x => x.UseLiteDbStorage());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -103,6 +106,10 @@ namespace oxmldocgen_api
                 s.SwaggerRoute = "/redoc/v1/swagger.json";
                 s.SwaggerUiRoute = "/redoc";
             });
+
+            GlobalConfiguration.Configuration.UseLiteDbStorage();
+            app.UseHangfireDashboard();
+            app.UseHangfireServer();
         }
     }
 }

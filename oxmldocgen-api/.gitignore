@@ -4,7 +4,8 @@ project.lock.json
 .DS_Store
 *.pyc
 nupkg/
-
+hangfire.db
+hangfire-journal.db
 # Visual Studio Code
 .vscode
 

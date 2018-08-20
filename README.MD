@@ -18,6 +18,12 @@ https://github.com/VNG-Realisatie/gemma-zaken
 
 ## Status of this project
 
+The openAPI has a create document function and an /enqueue function, which uses hangfire for queing jobs in case you need to asynchronously generate documents. https://www.hangfire.io/
+
+The default implementation is currently set to : LiteDB. LiteDB can be found at: https://github.com/mbdavid/LiteDB
+
+more about hangfire can be found at: 
+
 Currently there's a "unit" test in place which generates a docx openxml document and showes that images are resolved in that document.
 
 ```csharp
