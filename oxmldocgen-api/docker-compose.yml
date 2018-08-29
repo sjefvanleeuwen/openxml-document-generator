@@ -9,7 +9,7 @@ x-logging:
 
 services:
   api:
-    image: oxmldocgen-api
+    image: wigo4it/oxmldocgen-api
     build:
       context: ./oxmldocgen-api
       dockerfile: Dockerfile
