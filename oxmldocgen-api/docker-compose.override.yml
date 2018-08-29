@@ -4,7 +4,7 @@ services:
   api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - ASPNETCORE_URLS=http://0.0.0.0:5080
+      - ASPNETCORE_URLS=http://0.0.0.0:5091
       - PATH_BASE=/
     ports:
-      - "5080:5080"
+      - "5091:5091"
