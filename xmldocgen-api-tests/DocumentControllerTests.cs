@@ -13,7 +13,7 @@ namespace xmldocgen_api_tests
         [TestMethod]
         public void can_convert_html_to_openxml_document()
         {
-            var doc = File.ReadAllText(@".\data\letter.html");
+            var doc = File.ReadAllText("./data/letter.html");
             using (MemoryStream generatedDocument = new MemoryStream())
             {
                 using (WordprocessingDocument package = WordprocessingDocument.Create(generatedDocument, WordprocessingDocumentType.Document))
@@ -29,7 +29,7 @@ namespace xmldocgen_api_tests
                     mainPart.Document.Save();
                 }
                 // visually test this.
-                File.WriteAllBytes(@".\test.docx", generatedDocument.ToArray());
+                File.WriteAllBytes(@"./test.docx", generatedDocument.ToArray());
             }
         }    
     }
